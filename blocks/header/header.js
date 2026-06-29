@@ -129,16 +129,7 @@ export default async function decorate(block) {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
   });
-
-  const navTools = nav.querySelector('.nav-tools');
-
-  if (navTools) {
-    navTools.innerHTML = `
-    <a href="/search" aria-label="Search" class="nav-icon">🔍</a>
-    <a href="/login" aria-label="Login" class="nav-icon">👤</a>
-    <a href="/cart" aria-label="Cart" class="nav-icon">🛒</a>
-  `;
-  }
+  
 
   const navBrand = nav.querySelector('.nav-brand');
   const brandLink = navBrand.querySelector('.button');
