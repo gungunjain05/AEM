@@ -1,74 +1,73 @@
-.product-carousel-container{
-    padding:80px 0;
-    max-width:1200px;
-    margin:auto;
+.product-carousel-container {
+    max-width: 1200px;
+    margin: auto;
 }
 
-.product-header h2{
-    font-size:48px;
-    margin-bottom:10px;
+.product-header h2 {
+    font-size: 48px;
+    margin-bottom: 10px;
 }
 
-.product-header p{
-    color:#666;
-    margin-bottom:40px;
+.product-header p {
+    color: #666;
+    margin-bottom: 40px;
 }
 
-.carousel-wrapper{
-    display:flex;
-    align-items:center;
-    gap:20px;
+.carousel-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-.cards{
-    display:flex;
-    gap:24px;
-    overflow-x:auto;
-    scroll-behavior:smooth;
-    scrollbar-width:none;
-    flex:1;
+.cards {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    flex: 1;
 }
 
-.cards::-webkit-scrollbar{
-    display:none;
+.cards::-webkit-scrollbar {
+    display: none;
 }
 
-.card{
-    min-width:260px;
-    background:#fff;
-    border-radius:16px;
-    text-decoration:none;
-    color:#000;
-    transition:.3s;
-    padding:20px;
+.card {
+    min-width: 260px;
+    background: #fff;
+    border-radius: 16px;
+    text-decoration: none;
+    color: #000;
+    transition: 0.3s;
+    padding: 20px;
 }
 
-.card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 12px 35px rgba(0,0,0,.12);
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
 }
 
-.card picture img{
-    width:100%;
-    border-radius:12px;
+.card picture img {
+    width: 100%;
+    border-radius: 12px;
 }
 
-.card h3{
-    margin-top:20px;
-    font-size:24px;
+.card h3 {
+    margin-top: 20px;
+    font-size: 24px;
 }
 
-.card p{
-    color:#555;
+.card p {
+    color: #555;
 }
 
 .prev,
-.next{
-    width:44px;
-    height:44px;
-    border:none;
-    border-radius:50%;
-    background:#6929c4;
-    color:#fff;
-    cursor:pointer;
+.next {
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: #6929c4;
+    color: #fff;
+    cursor: pointer;
 }
