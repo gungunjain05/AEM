@@ -1,5 +1,6 @@
 export default function decorate(block) {
   const rows = [...block.children];
+  console.log('FOOTER ROWS:', rows.length, rows.map((r, i) => `${i}: ${r.textContent.trim().slice(0, 50)}`));
 
   block.innerHTML = `
     <div class="footer-container">
