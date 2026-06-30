@@ -1,13 +1,14 @@
 export default function decorate(block) {
-    const rows = [...block.children];
+  const rows = [...block.children];
+  console.log('WHATS-NEW ROWS:', rows.length, rows.map(r => r.children.length + ' cells: ' + r.textContent.trim().slice(0, 40)));
 
-    const heading = rows[0]?.textContent.trim();
-    const ctaText = rows[1]?.textContent.trim();
-    const ctaLink = rows[2]?.textContent.trim();
+  const heading = rows[0]?.textContent.trim();
+  const ctaText = rows[1]?.textContent.trim();
+  const ctaLink = rows[2]?.textContent.trim();
 
-    const articles = rows.slice(3);
+  const articles = rows.slice(3);
 
-    block.innerHTML = `
+  block.innerHTML = `
     <div class="whats-new-container">
       <div class="whats-new-header">
         <h2>${heading}</h2>
@@ -21,25 +22,25 @@ export default function decorate(block) {
     </div>
   `;
 
-    const grid = block.querySelector('.whats-new-grid');
+  const grid = block.querySelector('.whats-new-grid');
 
-    articles.forEach((row) => {
-        const cols = [...row.children];
+  articles.forEach((row) => {
+    const cols = [...row.children];
 
-        if (cols.length < 6) return;
+    if (cols.length < 6) return;
 
-        const image = cols[0].innerHTML;
-        const title = cols[1].textContent.trim();
-        const category = cols[2].textContent.trim();
-        const date = cols[3].textContent.trim();
-        const readTime = cols[4].textContent.trim();
-        const link = cols[5].textContent.trim();
+    const image = cols[0].innerHTML;
+    const title = cols[1].textContent.trim();
+    const category = cols[2].textContent.trim();
+    const date = cols[3].textContent.trim();
+    const readTime = cols[4].textContent.trim();
+    const link = cols[5].textContent.trim();
 
-        const card = document.createElement('a');
-        card.className = 'news-card';
-        card.href = link;
+    const card = document.createElement('a');
+    card.className = 'news-card';
+    card.href = link;
 
-        card.innerHTML = `
+    card.innerHTML = `
       <div class="news-image">
         ${image}
       </div>
@@ -57,6 +58,6 @@ export default function decorate(block) {
       </div>
     `;
 
-        grid.append(card);
-    });
+    grid.append(card);
+  });
 }
