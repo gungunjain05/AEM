@@ -1,16 +1,23 @@
 export default function decorate(block) {
   const rows = [...block.children];
 
+  // First row is always the heading/intro text
   const heading = rows[0]?.textContent.trim();
-  // rows[1] is the header row (Image/Title/Description/Link) — skip it
-  const dataRows = rows.slice(2);
+
+  // Treat every remaining row that has 4+ cells AND isn't just header labels as a data row
+  const dataRows = rows.slice(1).filter((row) => {
+    const cells = [...row.children];
+    if (cells.length < 4) return false;
+    const firstCellText = cells[1]?.textContent?.trim().toLowerCase();
+    // skip a literal header row if present
+    return firstCellText !== 'title';
+  });
 
   block.innerHTML = `
     <div class="product-carousel-container">
       <div class="product-header">
         <h2>${heading}</h2>
       </div>
-
       <div class="carousel-wrapper">
         <button class="prev">&#10094;</button>
         <div class="cards"></div>
@@ -23,7 +30,6 @@ export default function decorate(block) {
 
   dataRows.forEach((row) => {
     const cells = [...row.children];
-
     const image = cells[0]?.innerHTML ?? '';
     const title = cells[1]?.textContent ?? '';
     const desc = cells[2]?.textContent ?? '';
@@ -40,7 +46,6 @@ export default function decorate(block) {
 
   const next = block.querySelector('.next');
   const prev = block.querySelector('.prev');
-
   next.onclick = () => cards.scrollBy({ left: 320, behavior: 'smooth' });
   prev.onclick = () => cards.scrollBy({ left: -320, behavior: 'smooth' });
 }
