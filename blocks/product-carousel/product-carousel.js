@@ -1,18 +1,9 @@
 export default function decorate(block) {
   const rows = [...block.children];
-  console.log('ROWS:', rows.length, rows.map(r => r.children.length + ' cells: ' + r.textContent.trim().slice(0, 40)));
 
-  // First row is always the heading/intro text
   const heading = rows[0]?.textContent.trim();
-
-  // Treat every remaining row that has 4+ cells AND isn't just header labels as a data row
-  const dataRows = rows.slice(1).filter((row) => {
-    const cells = [...row.children];
-    if (cells.length < 4) return false;
-    const firstCellText = cells[1]?.textContent?.trim().toLowerCase();
-    // skip a literal header row if present
-    return firstCellText !== 'title';
-  });
+  const table = rows[1]?.querySelector('table');
+  const trs = table ? [...table.querySelectorAll('tr')].slice(1) : []; // skip header row
 
   block.innerHTML = `
     <div class="product-carousel-container">
@@ -29,12 +20,12 @@ export default function decorate(block) {
 
   const cards = block.querySelector('.cards');
 
-  dataRows.forEach((row) => {
-    const cells = [...row.children];
-    const image = cells[0]?.innerHTML ?? '';
-    const title = cells[1]?.textContent ?? '';
-    const desc = cells[2]?.textContent ?? '';
-    const link = cells[3]?.textContent ?? '';
+  trs.forEach((tr) => {
+    const td = [...tr.querySelectorAll('td')];
+    const image = td[0]?.innerHTML ?? '';
+    const title = td[1]?.textContent ?? '';
+    const desc = td[2]?.textContent ?? '';
+    const link = td[3]?.textContent ?? '';
 
     cards.insertAdjacentHTML('beforeend', `
       <a class="card" href="${link}">
