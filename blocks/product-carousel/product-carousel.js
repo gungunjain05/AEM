@@ -1,5 +1,6 @@
 export default function decorate(block) {
   const rows = [...block.children];
+  console.log('ROWS:', rows.length, rows.map(r => r.children.length + ' cells: ' + r.textContent.trim().slice(0, 40)));
 
   // First row is always the heading/intro text
   const heading = rows[0]?.textContent.trim();
