@@ -1,101 +1,47 @@
-.whats-new-header {
-    margin-bottom: 40px;
-}
-
 .whats-new-header h2 {
-    font-size: 42px;
-    font-weight: 500;
-    margin: 0;
+    font-size: 40px;
+    margin-bottom: 24px;
 }
 
-.whats-new-grid {
+.whats-new-cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 24px;
 }
 
-.news-card {
+.whats-new-card {
     text-decoration: none;
-    color: inherit;
-    display: block;
-    transition: transform 0.25s ease;
-}
-
-.news-card:hover {
-    transform: translateY(-5px);
-}
-
-.news-image {
+    color: #000;
+    border-radius: 12px;
     overflow: hidden;
-    border-radius: 10px;
+    background: #fff;
+    transition: 0.3s;
 }
 
-.news-image picture,
-.news-image img {
-    display: block;
+.whats-new-card:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+}
+
+.whats-new-image img {
     width: 100%;
+    border-radius: 8px;
 }
 
-.news-image img {
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.news-card:hover img {
-    transform: scale(1.05);
-}
-
-.news-content {
-    padding-top: 16px;
-}
-
-.news-content h3 {
-    font-size: 18px;
-    line-height: 1.45;
-    margin: 0 0 12px;
-}
-
-.category {
-    display: inline-block;
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 12px;
-}
-
-.meta {
+.whats-new-meta {
     display: flex;
     gap: 8px;
     font-size: 13px;
+    color: #666;
+    margin-top: 12px;
+}
+
+.whats-new-card h3 {
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+.whats-new-readtime {
+    font-size: 13px;
     color: #888;
-}
-
-.whats-new-footer {
-    margin-top: 40px;
-}
-
-.whats-new-footer a {
-    text-decoration: none;
-    color: #5b2abf;
-    font-weight: 600;
-}
-
-.whats-new-footer a:hover {
-    text-decoration: underline;
-}
-
-@media (max-width: 991px) {
-    .whats-new-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 640px) {
-    .whats-new-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .whats-new-header h2 {
-        font-size: 32px;
-    }
 }

@@ -1,63 +1,40 @@
 export default function decorate(block) {
   const rows = [...block.children];
-  console.log('WHATS-NEW ROWS:', rows.length, rows.map(r => r.children.length + ' cells: ' + r.textContent.trim().slice(0, 40)));
 
   const heading = rows[0]?.textContent.trim();
-  const ctaText = rows[1]?.textContent.trim();
-  const ctaLink = rows[2]?.textContent.trim();
-
-  const articles = rows.slice(3);
+  const table = rows[1]?.querySelector('table');
+  const trs = table ? [...table.querySelectorAll('tr')].slice(1) : []; // skip header row
 
   block.innerHTML = `
     <div class="whats-new-container">
       <div class="whats-new-header">
         <h2>${heading}</h2>
       </div>
-
-      <div class="whats-new-grid"></div>
-
-      <div class="whats-new-footer">
-        <a href="${ctaLink}">${ctaText} →</a>
-      </div>
+      <div class="whats-new-cards"></div>
     </div>
   `;
 
-  const grid = block.querySelector('.whats-new-grid');
+  const cards = block.querySelector('.whats-new-cards');
 
-  articles.forEach((row) => {
-    const cols = [...row.children];
+  trs.forEach((tr) => {
+    const td = [...tr.querySelectorAll('td')];
+    const image = td[0]?.innerHTML ?? '';
+    const title = td[1]?.textContent ?? '';
+    const category = td[2]?.textContent ?? '';
+    const date = td[3]?.textContent ?? '';
+    const readTime = td[4]?.textContent ?? '';
+    const link = td[5]?.textContent ?? '';
 
-    if (cols.length < 6) return;
-
-    const image = cols[0].innerHTML;
-    const title = cols[1].textContent.trim();
-    const category = cols[2].textContent.trim();
-    const date = cols[3].textContent.trim();
-    const readTime = cols[4].textContent.trim();
-    const link = cols[5].textContent.trim();
-
-    const card = document.createElement('a');
-    card.className = 'news-card';
-    card.href = link;
-
-    card.innerHTML = `
-      <div class="news-image">
-        ${image}
-      </div>
-
-      <div class="news-content">
-        <h3>${title}</h3>
-
-        <span class="category">${category}</span>
-
-        <div class="meta">
-          <span>${date}</span>
-          <span>•</span>
-          <span>${readTime}</span>
+    cards.insertAdjacentHTML('beforeend', `
+      <a class="whats-new-card" href="${link}">
+        <div class="whats-new-image">${image}</div>
+        <div class="whats-new-meta">
+          <span class="whats-new-category">${category}</span>
+          <span class="whats-new-date">${date}</span>
         </div>
-      </div>
-    `;
-
-    grid.append(card);
+        <h3>${title}</h3>
+        <span class="whats-new-readtime">${readTime}</span>
+      </a>
+    `);
   });
 }
