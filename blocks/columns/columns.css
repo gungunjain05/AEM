@@ -1,33 +1,95 @@
 .columns > div {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .columns img {
-  width: 100%;
+    width: 100%;
 }
 
 .columns > div > div {
-  order: 1;
+    order: 1;
 }
 
 .columns > div > .columns-img-col {
-  order: 0;
+    order: 0;
 }
 
 .columns > div > .columns-img-col img {
-  display: block;
+    display: block;
 }
 
 @media (width >= 900px) {
-  .columns > div {
-    align-items: center;
-    flex-direction: unset;
-    gap: 24px;
-  }
+    .columns > div {
+        align-items: center;
+        flex-direction: unset;
+        gap: 24px;
+    }
 
-  .columns > div > div {
-    flex: 1;
-    order: unset;
-  }
+    .columns > div > div {
+        flex: 1;
+        order: unset;
+    }
+}
+
+.stats .columns > div {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+
+.stats .columns > div > div {
+    text-align: left;
+}
+
+.stats h2,
+.stats strong:first-child {
+    display: block;
+    font-size: 72px;
+    font-weight: 300;
+    line-height: 1;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+.stats p {
+    font-size: 22px;
+    line-height: 1.5;
+    color: #444;
+}
+
+.stats .columns > div > div::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 5px;
+    margin-top: 32px;
+}
+
+.stats .columns > div > div:nth-child(1)::after {
+    background: #ef7d63;
+}
+
+.stats .columns > div > div:nth-child(2)::after {
+    background: #66636f;
+}
+
+.stats .columns > div > div:nth-child(3)::after {
+    background: #2db96b;
+}
+
+.stats .columns > div > div:nth-child(4)::after {
+    background: #56c6dd;
+}
+
+@media (max-width: 900px) {
+    .stats .columns > div {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .stats h2,
+    .stats strong:first-child {
+        font-size: 48px;
+    }
 }
