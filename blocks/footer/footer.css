@@ -92,40 +92,38 @@ footer .footer-region .icon img {
 /* Social */
 footer .footer-social {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
 }
 
-footer .footer-social p,
-footer .footer-social ul {
+footer .social-icons {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    justify-content: flex-end;
+    gap: 18px;
 }
 
-footer .footer-social a {
+footer .social-icons a {
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
 }
 
-footer .footer-social .icon {
+footer .social-icons .icon {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-footer .footer-social .icon img {
-    width: 28px;
-    height: 28px;
-    transition: transform 0.2s ease;
+footer .social-icons .icon img,
+footer .social-icons .icon svg {
+    width: 24px;
+    height: 24px;
 }
 
-footer .footer-social a:hover .icon img {
-    transform: scale(1.1);
+footer .social-icons p {
+    margin: 0;
 }
 
 /* Divider */

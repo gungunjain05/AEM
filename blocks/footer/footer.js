@@ -58,48 +58,54 @@ export default async function decorate(block) {
 
 
   block.innerHTML = `
+  <div class="footer-container">
+    <div class="footer-main">
+      <div class="footer-logo">${logo?.innerHTML ?? ''}</div>
 
-    <div class="footer-container">
+      <div class="footer-links">
+        ${sections['navigation']?.innerHTML ?? ''}
+      </div>
 
-      <div class="footer-main">
-
-        <div class="footer-logo">${logo?.innerHTML ?? ''}</div>
-
-        <div class="footer-links">${sections['navigation']?.innerHTML ?? ''}</div>
-
-        <div class="footer-bottom-row">
-
-          <div class="footer-left">
-
-            <div class="footer-company">${sections['company information']?.innerHTML ?? ''}</div>
-
-            <div class="footer-region">
-
-
-              <span>${sections['region']?.innerHTML ?? ''}</span>
-
-            </div>
-
+      <div class="footer-bottom-row">
+        <div class="footer-left">
+          <div class="footer-company">
+            ${sections['company information']?.innerHTML ?? ''}
           </div>
 
-          <div class="footer-social">${sections['social links']?.innerHTML ?? ''}</div>
-
+          <div class="footer-region">
+            ${sections['region']?.innerHTML ?? ''}
+          </div>
         </div>
 
+        <div class="footer-social">
+          <div class="social-icons"></div>
+        </div>
       </div>
-
-      <hr class="footer-divider" />
-
-      <div class="footer-legal-row">
-
-        <p class="footer-copyright">${sections['copyright']?.innerHTML ?? ''}</p>
-
-        <div class="footer-legal">${sections['legal links']?.innerHTML ?? ''}</div>
-
-      </div>
-
     </div>
 
-  `;
+    <hr class="footer-divider">
+
+    <div class="footer-legal-row">
+      <p class="footer-copyright">
+        ${sections['copyright']?.innerHTML ?? ''}
+      </p>
+
+      <div class="footer-legal">
+        ${sections['legal links']?.innerHTML ?? ''}
+      </div>
+    </div>
+  </div>
+`;
   decorateIcons(block);
+  const socialContainer = block.querySelector('.social-icons');
+
+  if (sections['social links']) {
+    sections['social links']
+      .querySelectorAll('a')
+      .forEach((link) => {
+        socialContainer.append(link.cloneNode(true));
+      });
+
+    decorateIcons(socialContainer);
+  }
 }
