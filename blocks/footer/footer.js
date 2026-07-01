@@ -75,7 +75,6 @@ export default async function decorate(block) {
 
             <div class="footer-region">
 
-              <span class="footer-region-icon">&#127760;</span>
 
               <span>${sections['region']?.innerHTML ?? ''}</span>
 
