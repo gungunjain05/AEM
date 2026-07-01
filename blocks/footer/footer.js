@@ -1,5 +1,4 @@
 export default async function decorate(block) {
-  // Fetch the footer content fragment
   const footerPath = '/footer';
   const resp = await fetch(`${footerPath}.plain.html`);
   if (!resp.ok) {
@@ -12,7 +11,6 @@ export default async function decorate(block) {
   const temp = document.createElement('div');
   temp.innerHTML = html;
 
-  // The fragment structure is: <div><div class="footer"><div>row</div>...</div></div>
   const footerBlock = temp.querySelector('.footer') || temp.firstElementChild;
   let rows = [...footerBlock.children];
 
@@ -31,17 +29,24 @@ export default async function decorate(block) {
 
   block.innerHTML = `
     <div class="footer-container">
-      <div class="footer-top">
+      <div class="footer-main">
         <div class="footer-logo">${logo?.innerHTML ?? ''}</div>
         <div class="footer-links">${sections['navigation']?.innerHTML ?? ''}</div>
-        <div class="footer-company">${sections['company information']?.innerHTML ?? ''}</div>
-        <div class="footer-region">${sections['region']?.innerHTML ?? ''}</div>
-        <div class="footer-social">${sections['social links']?.innerHTML ?? ''}</div>
+        <div class="footer-bottom-row">
+          <div class="footer-left">
+            <div class="footer-company">${sections['company information']?.innerHTML ?? ''}</div>
+            <div class="footer-region">
+              <span class="footer-region-icon">&#127760;</span>
+              <span>${sections['region']?.innerHTML ?? ''}</span>
+            </div>
+          </div>
+          <div class="footer-social">${sections['social links']?.innerHTML ?? ''}</div>
+        </div>
       </div>
       <hr class="footer-divider" />
-      <div class="footer-bottom">
+      <div class="footer-legal-row">
         <p class="footer-copyright">${sections['copyright']?.innerHTML ?? ''}</p>
-        <div class="footer-legal">${sections['legal legal links']?.innerHTML ?? ''}</div>
+        <div class="footer-legal">${sections['legal links']?.innerHTML ?? ''}</div>
       </div>
     </div>
   `;
