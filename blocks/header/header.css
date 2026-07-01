@@ -275,3 +275,10 @@ header nav .nav-sections ul > li > ul > li {
         padding: 8px 0;
     }
 }
+
+header .nav-tools {
+    grid-area: tools;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
