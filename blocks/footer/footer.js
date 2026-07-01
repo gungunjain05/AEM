@@ -1,7 +1,21 @@
-export default function decorate(block) {
-  let rows = [...block.children];
+export default async function decorate(block) {
+  // Fetch the footer content fragment
+  const footerPath = '/footer';
+  const resp = await fetch(`${footerPath}.plain.html`);
+  if (!resp.ok) {
+    // eslint-disable-next-line no-console
+    console.error('Failed to load footer fragment', resp.status);
+    return;
+  }
+  const html = await resp.text();
 
-  // Remove the block-name header row if present (e.g. "footer")
+  const temp = document.createElement('div');
+  temp.innerHTML = html;
+
+  // The fragment structure is: <div><div class="footer"><div>row</div>...</div></div>
+  const footerBlock = temp.querySelector('.footer') || temp.firstElementChild;
+  let rows = [...footerBlock.children];
+
   if (rows[0]?.children.length === 1 && rows[0].textContent.trim().toLowerCase() === 'footer') {
     rows = rows.slice(1);
   }
@@ -15,10 +29,6 @@ export default function decorate(block) {
     if (label) sections[label] = content;
   }
 
-  // DEBUG - check console output on the live page
-  console.log('FOOTER ROWS AFTER STRIP:', rows.length, rows.map((r, i) => `${i}: ${r.textContent.trim().slice(0, 40)}`));
-  console.log('SECTIONS KEYS:', Object.keys(sections));
-
   block.innerHTML = `
     <div class="footer-container">
       <div class="footer-top">
@@ -31,7 +41,7 @@ export default function decorate(block) {
       <hr class="footer-divider" />
       <div class="footer-bottom">
         <p class="footer-copyright">${sections['copyright']?.innerHTML ?? ''}</p>
-        <div class="footer-legal">${sections['legal links']?.innerHTML ?? ''}</div>
+        <div class="footer-legal">${sections['legal legal links']?.innerHTML ?? ''}</div>
       </div>
     </div>
   `;
