@@ -103,6 +103,7 @@ footer .footer-region span {
     display: inline-flex;
     align-items: center;
     white-space: nowrap;
+    vertical-align: bottom;
 }
 
 footer .footer-social {
