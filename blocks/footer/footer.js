@@ -1,3 +1,4 @@
+import { decorateIcons } from '../../scripts/aem.js';
 export default async function decorate(block) {
 
   const footerPath = '/footer';
@@ -101,5 +102,5 @@ export default async function decorate(block) {
     </div>
 
   `;
-
+  decorateIcons(block);
 }
