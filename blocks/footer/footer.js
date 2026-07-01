@@ -1,17 +1,19 @@
+import { loadFragment } from '../fragment/fragment.js';
+import { decorateIcons } from '../../scripts/aem.js';
+
 export default async function decorate(block) {
   const footerPath = '/footer';
-  const resp = await fetch(`${footerPath}.plain.html`);
-  if (!resp.ok) {
+  const fragment = await loadFragment(footerPath);
+
+  if (!fragment) {
     // eslint-disable-next-line no-console
-    console.error('Failed to load footer fragment', resp.status);
+    console.error('Failed to load footer fragment');
     return;
   }
-  const html = await resp.text();
 
-  const temp = document.createElement('div');
-  temp.innerHTML = html;
+  const footerBlock = document.createElement('div');
+  while (fragment.firstElementChild) footerBlock.append(fragment.firstElementChild);
 
-  const footerBlock = temp.querySelector('.footer') || temp.firstElementChild;
   let rows = [...footerBlock.children];
 
   if (rows[0]?.children.length === 1 && rows[0].textContent.trim().toLowerCase() === 'footer') {
@@ -50,4 +52,6 @@ export default async function decorate(block) {
       </div>
     </div>
   `;
+
+  decorateIcons(block);
 }
