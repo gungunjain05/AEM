@@ -89,15 +89,16 @@ footer .footer-region .icon img {
     height: 20px;
 }
 
-/* Social */
 footer .footer-social {
     display: flex;
+    flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
 }
 
-footer .footer-social p,
-footer .footer-social ul {
-    display: flex;
+footer .footer-social > * {
+    display: flex !important;
+    flex-direction: row !important;
     align-items: center;
     gap: 16px;
     margin: 0;
@@ -105,27 +106,16 @@ footer .footer-social ul {
     list-style: none;
 }
 
-footer .footer-social a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-}
-
 footer .footer-social .icon {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
 }
 
-footer .footer-social .icon img {
-    width: 28px;
-    height: 28px;
-    transition: transform 0.2s ease;
-}
-
-footer .footer-social a:hover .icon img {
-    transform: scale(1.1);
+footer .footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Divider */
