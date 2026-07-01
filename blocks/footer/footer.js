@@ -1,20 +1,29 @@
 export default function decorate(block) {
   const rows = [...block.children];
-  console.log('FOOTER ROWS:', rows.length, rows.map((r, i) => `${i}: ${r.textContent.trim().slice(0, 50)}`));
+
+  const logo = rows[0];
+  const sections = {};
+
+  // pair up label rows with their content rows, starting after the logo
+  for (let i = 1; i < rows.length; i += 2) {
+    const label = rows[i]?.textContent.trim().toLowerCase();
+    const content = rows[i + 1];
+    if (label) sections[label] = content;
+  }
 
   block.innerHTML = `
     <div class="footer-container">
       <div class="footer-top">
-        <div class="footer-logo">${rows[0]?.innerHTML ?? ''}</div>
-        <div class="footer-links">${rows[1]?.innerHTML ?? ''}</div>
-        <div class="footer-company">${rows[2]?.innerHTML ?? ''}</div>
-        <div class="footer-region">${rows[3]?.innerHTML ?? ''}</div>
-        <div class="footer-social">${rows[4]?.innerHTML ?? ''}</div>
+        <div class="footer-logo">${logo?.innerHTML ?? ''}</div>
+        <div class="footer-links">${sections['navigation']?.innerHTML ?? ''}</div>
+        <div class="footer-company">${sections['company information']?.innerHTML ?? ''}</div>
+        <div class="footer-region">${sections['region']?.innerHTML ?? ''}</div>
+        <div class="footer-social">${sections['social links']?.innerHTML ?? ''}</div>
       </div>
       <hr class="footer-divider" />
       <div class="footer-bottom">
-        <p class="footer-copyright">${rows[5]?.innerHTML ?? ''}</p>
-        <div class="footer-legal">${rows[6]?.innerHTML ?? ''}</div>
+        <p class="footer-copyright">${sections['copyright']?.innerHTML ?? ''}</p>
+        <div class="footer-legal">${sections['legal links']?.innerHTML ?? ''}</div>
       </div>
     </div>
   `;
