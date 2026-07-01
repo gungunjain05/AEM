@@ -70,23 +70,39 @@ footer .footer-company p {
     color: #333;
 }
 
-/* Region */
+/* Region - force icon + text same line */
 footer .footer-region {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 8px;
     margin-top: 18px;
     font-size: 14px;
+    flex-wrap: nowrap;
+}
+
+footer .footer-region > * {
+    display: flex;
+    align-items: center;
+    margin: 0;
 }
 
 footer .footer-region .icon {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    flex-shrink: 0;
 }
 
 footer .footer-region .icon img {
     width: 20px;
     height: 20px;
+    display: block;
+}
+
+footer .footer-region span {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
 }
 
 footer .footer-social {
