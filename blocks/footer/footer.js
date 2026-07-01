@@ -1,15 +1,23 @@
 export default function decorate(block) {
-  const rows = [...block.children];
+  let rows = [...block.children];
+
+  // Remove the block-name header row if present (e.g. "footer")
+  if (rows[0]?.children.length === 1 && rows[0].textContent.trim().toLowerCase() === 'footer') {
+    rows = rows.slice(1);
+  }
 
   const logo = rows[0];
   const sections = {};
 
-  // pair up label rows with their content rows, starting after the logo
   for (let i = 1; i < rows.length; i += 2) {
     const label = rows[i]?.textContent.trim().toLowerCase();
     const content = rows[i + 1];
     if (label) sections[label] = content;
   }
+
+  // DEBUG - check console output on the live page
+  console.log('FOOTER ROWS AFTER STRIP:', rows.length, rows.map((r, i) => `${i}: ${r.textContent.trim().slice(0, 40)}`));
+  console.log('SECTIONS KEYS:', Object.keys(sections));
 
   block.innerHTML = `
     <div class="footer-container">
