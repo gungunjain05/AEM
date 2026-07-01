@@ -21,6 +21,10 @@ footer .footer-logo img {
     margin-bottom: 24px;
 }
 
+.footer-links {
+    margin-bottom: 24px;
+}
+
 /* Nav links row */
 footer .footer-links ul {
     list-style: none;
